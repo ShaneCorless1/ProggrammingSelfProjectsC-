@@ -20,9 +20,13 @@ namespace CalculaterApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Variables to store the last number and the result
+        double lastnumber, result;
         public MainWindow()
         {
             InitializeComponent();
+        
+
 
 
           
@@ -42,6 +46,51 @@ namespace CalculaterApp
             }
 
 
+        }
+
+        private void Twobutton_Click(object sender, RoutedEventArgs e)
+        {
+            if (resultlabel.Content.ToString() =="0")
+            {
+                resultlabel.Content = "2";
+            }
+            else
+            {
+                resultlabel.Content = $"{resultlabel.Content}2";
+            }
+        }
+
+        private void Equalsbutton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Addbutton_Click(object sender, RoutedEventArgs e)
+        {
+            resultlabel.Content = $"{resultlabel.Content}+";
+        }
+
+        private void ACbutton_Click(object sender, RoutedEventArgs e)
+        {
+            resultlabel.Content = 0;
+        }
+
+        private void Percentagebutton_Click(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(resultlabel.Content.ToString(), out lastnumber))
+            {
+                lastnumber = lastnumber / 100;
+                resultlabel.Content = lastnumber.ToString();
+            }
+        }
+
+        private void Negativebutton_Click(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(resultlabel.Content.ToString(), out lastnumber))
+            {
+                lastnumber = lastnumber * -1;
+                resultlabel.Content = lastnumber.ToString();
+            }
         }
     }
 }

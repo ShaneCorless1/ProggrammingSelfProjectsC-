@@ -9,8 +9,8 @@
         xmlns:wpf11="http://schemas.microsoft.com/xps/2005/06"
         mc:Ignorable="d"
         Title="MainWindow" Height="525"
-        Width="250">
-    <Grid Margin="10" Background="#FFF39090">
+        Width="350">
+    <Grid  Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -36,19 +36,19 @@
         <Button Content="AC" 
                 Grid.Row="2" 
                 Margin="5"
-                x:Name="ACbutton"
+                x:Name="ACbutton" Click="ACbutton_Click"
                 />
         <Button Content="+/1"
                 Grid.Row="2"
                 Margin="5"
                 Grid.Column="1"
-                x:Name="Negativebutton"
+                x:Name="Negativebutton" Click="Negativebutton_Click"
                 />
         <Button Content="%"
                 Grid.Row="2"
                 Margin="5"
                 x:Name="Percentagebutton"
-                Grid.Column="2"/>
+                Grid.Column="2" Click="Percentagebutton_Click"/>
 
         <Button Content="/"
                 Grid.Row="2"
@@ -118,7 +118,7 @@
                 Grid.Row="5"
                 Grid.Column="1"
                Margin="5"
-                x:Name="Twobutton"
+                x:Name="Twobutton" Click="Twobutton_Click"
                 />
         <Button Content="3"
                 Grid.Row="5"
@@ -131,7 +131,7 @@
                 Grid.Row="5"
                 Margin="5"
                 Grid.Column="3"
-                x:Name="Addbutton"
+                x:Name="Addbutton" Click="Addbutton_Click"
                 />
 
         <Button Content="0"
@@ -152,7 +152,7 @@
                 Grid.Row="6"
                 Grid.Column="3"
                 x:Name="Equalsbutton"
-                Margin="5"/>
+                Margin="5" Click="Equalsbutton_Click"/>
 
     </Grid>
 </Window>
