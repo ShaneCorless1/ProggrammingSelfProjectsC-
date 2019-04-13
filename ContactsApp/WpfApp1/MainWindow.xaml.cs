@@ -20,6 +20,7 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Contact> contacts;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,7 +36,53 @@ namespace WpfApp1
 
         public void ReadDatabase()
         {
+         
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                connection.CreateTable<Contact>();
+                contacts = connection.Table<Contact>().OrderBy(c =>c.Name).ToList();
 
+             
+
+
+
+            }
+            if (contacts != null)
+
+            {
+
+                
+                contactListView.ItemsSource = contacts;
+
+            }
+        }
+
+        private void TextBoxChanged_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox searchTextBox = sender as TextBox;
+
+            var filteredList = contacts.Where(c => c.Name.ToLower().Contains(searchTextBox.Text)).ToList();
+
+            //SQL Queries
+            var filteredList2 = from c2 in contacts
+                                where c2.Name.ToLower().Contains(searchTextBox.Text.ToLower())
+                                orderby c2.EmailAddress
+                                select c2;
+
+            //Contact list will equla in the filetered
+            contactListView.ItemsSource = filteredList2.ToList();
+
+        }
+
+        private void ContactListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Contact selectedContact = (Contact)contactListView.SelectedItem;
+            if (selectedContact!= null)
+            {
+                EditContact NewEditContact = new EditContact(selectedContact);
+                NewEditContact.ShowDialog();
+            }
         }
     }
 }
+
