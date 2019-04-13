@@ -13,8 +13,9 @@ namespace WpfApp1
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Number { get; set; }
+        public string Number { get; set; }
 
         public string EmailAddress { get; set; }
     }
+
 }

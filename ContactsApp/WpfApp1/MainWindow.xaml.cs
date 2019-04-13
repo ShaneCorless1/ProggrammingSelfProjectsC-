@@ -23,12 +23,19 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            ReadDatabase();
         }
 
         private void AddNewCotnact_Click(object sender, RoutedEventArgs e)
         {
             NewContactWindow newContactWindow = new NewContactWindow();
             newContactWindow.ShowDialog();
+            ReadDatabase();
+        }
+
+        public void ReadDatabase()
+        {
+
         }
     }
 }

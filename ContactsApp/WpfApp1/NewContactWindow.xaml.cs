@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using SQLite;
 
 namespace WpfApp1
 {
@@ -26,7 +28,25 @@ namespace WpfApp1
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            //Save contact
+            //left: Save Contact
+
+            Contact NewContact = new Contact()
+            {
+                EmailAddress = emailTextBox.Text,
+                Name = nameTextBox.Text,
+                Number = phoneNumberTextBox.Text
+            };
+
+            //Database Attributes
+    
+            //This connection will only open when the code inside is executed
+            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+            {
+                connection.CreateTable<Contact>();
+                connection.Insert(NewContact);
+            }
+
+
 
             //Close Page
             this.Close();
