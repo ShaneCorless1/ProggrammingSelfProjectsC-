@@ -33,7 +33,7 @@ namespace WpfApp1.Controls
         public static readonly DependencyProperty ContactProperty =
 
             DependencyProperty.Register("Contact", typeof(Contact)
-                , typeof(TemplateControl), new PropertyMetadata(0, SetText));
+                , typeof(TemplateControl), new PropertyMetadata(new Contact() {Name= "Name Lastname", Number="number", EmailAddress="New Email" }, SetText));
 
         private static void SetText(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -43,7 +43,10 @@ namespace WpfApp1.Controls
 
             if (Control!=null)
             {
-                Control.nameTextBlock = (e.NewValue as Contact).Name;
+                Control.nameTextBlock.Text = (e.NewValue as Contact).Name;
+                Control.EmailTextBlock.Text = (e.NewValue as Contact).EmailAddress;
+                Control.PhoneTextBlock.Text = (e.NewValue as Contact).Number;
+
             }
         }
 
